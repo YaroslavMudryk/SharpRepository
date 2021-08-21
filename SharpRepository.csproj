@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <Authors>Yaroslav08</Authors>
+    <PackageProjectUrl>https://github.com/Yaroslav08/SharpRepository</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yaroslav08/SharpRepository</RepositoryUrl>
+    <RepositoryType>Library</RepositoryType>
+    <PackageReleaseNotes>Basic functionality of repository pattern:
+InsertOne, InsertList;
+UpdateOne, UpdateList;
+RemoveOne, RemoveList;
+GetById;
+GetList;
+GetPaginationList;</PackageReleaseNotes>
+    <Description>The library provides easy access to your data through EF Core</Description>
   </PropertyGroup>
 
   <ItemGroup>
