@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SharpRepository.Interfaces;
+using SharpRepository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,6 +113,24 @@ namespace SharpRepository.Implementations
             if (withSave)
                 await SaveAsync();
             return entity;
+        }
+
+        #endregion
+
+        #region Pagination
+
+        public async Task<PaginationList<T>> GetPaginationListAsync(int offset, int count, bool disableTracking = true)
+        {
+            var totalCount = await _dbSet.CountAsync();
+            var items = await _dbSet.Skip(offset).Take(count).ToListAsync();
+            return new PaginationList<T>(items, totalCount);
+        }
+
+        public async Task<PaginationList<T>> GetPaginationListAsync(Expression<Func<T, bool>> predicate, int offset = 0, int count = 20, bool disableTracking = true)
+        {
+            var totalCount = await _dbSet.CountAsync(predicate);
+            var items = await _dbSet.Skip(offset).Take(count).Where(predicate).ToListAsync();
+            return new PaginationList<T>(items, totalCount);
         }
 
         #endregion
