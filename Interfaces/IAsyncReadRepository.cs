@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 namespace SharpRepository.Interfaces
 {
-    public interface IAsyncReadRepository<T, ID>
+    public interface IAsyncReadRepository<T>
     {
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, bool disableTracking = true);
 

@@ -8,13 +8,13 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 namespace SharpRepository.Implementations
 {
-    public class AsyncRepository<T, ID> : IAsyncRepository<T, ID> where T : class
+    public class AsyncRepository<T, DBContext> : IAsyncRepository<T, DBContext> where T : class where DBContext : DbContext
     {
         protected readonly DbContext _db;
         protected readonly DbSet<T> _dbSet;
-        public AsyncRepository(DbContext db)
+        public AsyncRepository(DBContext db)
         {
-            _db = db;
+            _db = db ?? throw new ArgumentNullException(nameof(db));
             _dbSet = _db.Set<T>();
         }
 

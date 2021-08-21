@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SharpRepository.Interfaces
 {
-    public interface IAsyncPaginationRepository<T, ID>
+    public interface IAsyncPaginationRepository<T>
     {
         Task<PaginationList<T>> GetPaginationListAsync(int offset, int count, bool disableTracking = true);
 
